@@ -3,10 +3,10 @@ import { UbigeoService } from "../ubigeo.service";
 import { Departamento, Provincia, Districto } from "../wrappers/ubigeos";
 
 @Component({
-  selector: "app-file-reader",
-  templateUrl: "./file-reader.component.html"
+  selector: "app-ubigeo",
+  templateUrl: "./ubigeo.component.html"
 })
-export class FileReaderComponent implements OnInit {
+export class UbigeoComponent implements OnInit {
   departamentos: Departamento[] = [];
   provincias: Provincia[] = [];
   districtos: Districto[] = [];
