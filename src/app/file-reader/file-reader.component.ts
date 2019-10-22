@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { FileReaderService } from "../file-reader.service";
+import { UbigeoService } from "../ubigeo.service";
 import { Departamento, Provincia, Districto } from "../wrappers/ubigeos";
 
 @Component({
@@ -11,10 +11,10 @@ export class FileReaderComponent implements OnInit {
   provincias: Provincia[] = [];
   districtos: Districto[] = [];
 
-  constructor(private fileReaderService: FileReaderService) {}
+  constructor(private fileReaderService: UbigeoService) {}
 
   ngOnInit() {
-    this.fileReaderService.readFile().subscribe(data => {
+    this.fileReaderService.getData().subscribe(data => {
       data = data.replace(/"/g, "");
       console.log(data);
       for (const line of data.split(/[\r\n]+/)) {

@@ -6,19 +6,21 @@ import { Departamento, Provincia, Districto } from "./wrappers/ubigeos";
 @Injectable({
   providedIn: "root"
 })
-export class FileReaderService {
+export class UbigeoService {
   constructor(private http: HttpClient) {}
 
-  public readFile(): Observable<any> {
+  public getData(): Observable<any> {
     return this.http.get("../assets/fileText.txt", { responseType: "text" });
   }
 
-  public createDepartamento(data) {
-    let datos = data.substring(0, data.length - 1).split(" ");
+  public createDepartamento(dataDepartamento: string) {
+    let datos = dataDepartamento
+      .substring(0, dataDepartamento.length - 1)
+      .split(" ");
     return new Departamento(datos[0], datos[1]);
   }
 
-  public createProvincia(dataProvincia, dataDepartamento?) {
+  public createProvincia(dataProvincia: string, dataDepartamento?: string) {
     let aux = dataProvincia.substring(1);
     let datos = aux.replace(" ", "_").split("_");
 
@@ -32,7 +34,7 @@ export class FileReaderService {
     return new Provincia(datos[0], datos[1]);
   }
 
-  public createDistricto(dataDistricto, dataProvincia?) {
+  public createDistricto(dataDistricto: string, dataProvincia?: string) {
     let aux = dataDistricto.substring(1);
     let datos = aux.replace(" ", "_").split("_");
 
@@ -47,7 +49,7 @@ export class FileReaderService {
     return new Districto(datos[0], datos[1]);
   }
 
-  public checkIfexits(list: any[], obj) {
+  public checkIfexits(list: any[], obj: any) {
     for (let i = 0; i < list.length; i++) {
       if (list[i].codigo === obj.codigo) {
         return true;
